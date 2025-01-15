@@ -166,3 +166,8 @@ flights_with_airports = flights.join(airports, on="dest", how="leftouter")
 flights_with_airports.show()
 
 ## Chapter 3: Machine learning pipelines
+# Rename year column
+planes = planes.withColumnRenamed("year", "plane_year")
+
+# Join the DataFrames
+model_data = flights.join(planes, on="tailnum", how="leftouter")
