@@ -1,5 +1,5 @@
-# Datacamp tutorial: Introduction to PySpark
-
+## Datacamp tutorial: Introduction to PySpark
+## Chapter 1: Introduction
 # Verify SparkContext
 print(sc)
 
@@ -92,6 +92,7 @@ long_flights2 = flights.filter(flights.distance > 1000)
 long_flights1.show()
 long_flights2.show()
 
+## Chapter 2: Manipulating data
 # Select the first set of columns
 selected1 = flights.select("tailnum", "origin", "dest")
 
@@ -151,3 +152,17 @@ by_month_dest.avg("dep_delay").show()
 
 # Standard deviation of departure delay
 by_month_dest.agg(F.stddev("dep_delay")).show()
+
+# Examine the data
+airports.show()
+
+# Rename the faa column
+airports = airports.withColumnRenamed("faa", "dest")
+
+# Join the DataFrames
+flights_with_airports = flights.join(airports, on="dest", how="leftouter")
+
+# Examine the new DataFrame
+flights_with_airports.show()
+
+## Chapter 3: Machine learning pipelines
